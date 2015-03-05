@@ -3,8 +3,8 @@
 
 Network Working Group                                         C. Huitema
 Internet-Draft                                                 Microsoft
-Intended status: Informational                             March 3, 2015
-Expires: September 4, 2015
+Intended status: Informational                             March 5, 2015
+Expires: September 6, 2015
 
 
               Current Hostname Practice Considered Harmful
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 4, 2015.
+   This Internet-Draft will expire on September 6, 2015.
 
 Copyright Notice
 
@@ -52,7 +52,7 @@ Copyright Notice
 
 
 
-Huitema                 Expires September 4, 2015               [Page 1]
+Huitema                 Expires September 6, 2015               [Page 1]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -91,7 +91,7 @@ Table of Contents
    Host names have to unique within the domain in which they are
    created.  If the domain is large enough, this uniqueness requirement
    means that the host name provides a lot of information on the device.
-   It is not a world wide unique identifier, but it can be a veru good
+   It is not a worldwide unique identifier, but it can be a very good
    partial identifier.
 
    The disclosure of information through host names creates a problem
@@ -108,7 +108,7 @@ Table of Contents
 
 
 
-Huitema                 Expires September 4, 2015               [Page 2]
+Huitema                 Expires September 6, 2015               [Page 2]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -138,7 +138,7 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    In large organizations, collisions are more likely and a more
    structured approach is necessary.  In theory, organizations could use
    multiple DNS subdomains to ease the pressure on uniqueness, but in
-   practice many don't and insist on unqiue flat names, if only not to
+   practice many don't and insist on unique flat names, if only not to
    advertise an internal structure to the outside world.  To ensure
    unique names, they will set naming guidelines and enforce some kind
    of structured naming.  For example, within the Microsoft corporate
@@ -164,14 +164,14 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 
 
-Huitema                 Expires September 4, 2015               [Page 3]
+Huitema                 Expires September 6, 2015               [Page 3]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
 
    VPN connection to the Microsoft corporate network.  The two pieces of
    information, put together, firmly point to Christian Huitema,
-   employeed by Microsoft.  The identification is successfull.
+   employed by Microsoft.  The identification is successfull.
 
    In the example, we saw a login name inside the host name, and that
    certainly helped identification.  But generic names like "jupiter" or
@@ -183,8 +183,8 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    by maybe a factor thousand.  Other information like the visited sites
    will quickly complement that data and lead to user identification.
 
-   Of course, unqiue names assigned by manufacturers are even more
-   interesting for ssuch adversaries.  With a unique name like "BrandX-
+   Of course, unique names assigned by manufacturers are even more
+   interesting for such adversaries.  With a unique name like "BrandX-
    123456-7890-abcdef," identification can be pretty much immediate.
 
 4.  Protocols that leak host names
@@ -201,11 +201,11 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    query can disclose the "host name."  DHCP traffic is sent to
    multicast addresses and can be easily monitored, enabling adversaries
    to discover the host name associated with a computer visiting a
-   particular network.
+   particular network.  DHCPv6 [RFC3315] shares similar issues.
 
-   The problem with the host names and FQDN parameters in DHCP are
-   analysed in [I-D.ietf-dhc-dhcp-privacy] and
-   [I-D.ietf-dhc-dhcpv6-privacy].  Possible mitigation is described in
+   The problems with the host names and FQDN parameters in DHCP are
+   analyzed in [I-D.ietf-dhc-dhcp-privacy] and
+   [I-D.ietf-dhc-dhcpv6-privacy].  Possible mitigations are described in
    [I-D.huitema-dhc-anonymity-profile].
 
 4.2.  DNS address to name resolution
@@ -220,7 +220,7 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 
 
-Huitema                 Expires September 4, 2015               [Page 4]
+Huitema                 Expires September 6, 2015               [Page 4]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -236,7 +236,7 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
    Multicast DNS (MDNS) is defined in [RFC6762].  It enables hosts to
    send DNS queries over a multicast port, and to elicit responses from
-   hosts partipating in the service.
+   hosts participating in the service.
 
    If an adversary suspects that a particular host is present on a
    network, the adversary can send issue MDNS or LLMNR requests to find,
@@ -266,17 +266,17 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    name is well under the control of the device's owner.
 
    In theory there should not be any privacy issue, but in practice the
-   publiction of a service also forces the publication of the host name,
-   due to a chain of dependencies.  The service name is used to publish
-   a PTR record announcing the service.  The PTR record typically points
-   to the service name in the local domain.  The service names, in turn,
-   are used to publish TXT records describing service parameters, and
-   SRV records describing the service location.
+   publication of a service also forces the publication of the host
+   name, due to a chain of dependencies.  The service name is used to
+   publish a PTR record announcing the service.  The PTR record
+   typically points to the service name in the local domain.  The
+   service names, in turn, are used to publish TXT records describing
+   service parameters, and SRV records describing the service location.
 
 
 
 
-Huitema                 Expires September 4, 2015               [Page 5]
+Huitema                 Expires September 6, 2015               [Page 5]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -321,10 +321,9 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    visiting insecure places."  This amounts to attack surface reduction,
    and is clearly beneficial.  However, there are two issues with this
    advice.  First, it relies on recognizing which network are secure or
-   insecure.  This is hard to automate, while relying on the user
-   judgement may not always provide good results.  Second, some
-   protocols like DHCP cannot be turned off, which limits the value of
-   this option.
+   insecure.  This is hard to automate, but relying on the user judgment
+   may not always provide good results.  Second, some protocols like
+   DHCP cannot be turned off, which limits the value of this option.
 
    It may be possible in many cases to examine a protocol and prevent it
    from leaking host names.  This is for example what is attempted for
@@ -332,7 +331,8 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 
 
-Huitema                 Expires September 4, 2015               [Page 6]
+
+Huitema                 Expires September 6, 2015               [Page 6]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -349,7 +349,7 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    "get host name" API.  Protocols like DHCP or MDNS will publish that
    randomized host name instead of the static value.  This will
    frustrate monitoring by adversaries, without preventing protocols
-   liek DNS SD from operating as expected.
+   such as DNS SD from operating as expected.
 
    Obviously, further studies are required before the idea of randomized
    host names can be implemented.
@@ -388,7 +388,7 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 
 
-Huitema                 Expires September 4, 2015               [Page 7]
+Huitema                 Expires September 6, 2015               [Page 7]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -444,5 +444,5 @@ Author's Address
 
 
 
-Huitema                 Expires September 4, 2015               [Page 8]
+Huitema                 Expires September 6, 2015               [Page 8]
 
