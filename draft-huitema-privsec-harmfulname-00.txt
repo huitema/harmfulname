@@ -2,9 +2,9 @@
 
 
 Network Working Group                                         C. Huitema
-Internet-Draft                                                 Microsoft
-Intended status: Informational                             March 5, 2015
-Expires: September 6, 2015
+Internet-Draft                                                 D. Thaler
+Intended status: Informational                                 Microsoft
+Expires: September 7, 2015                                 March 6, 2015
 
 
               Current Hostname Practice Considered Harmful
@@ -17,8 +17,11 @@ Abstract
    with a name tag affixed to your lapel.  The practice can
    significantly compromise your privacy, and should stop.
 
-   One possible remedy is to replace the static host names by frequently
-   changing randomized values.  This idea obviously needs more work.
+   There are several possible remedies, such as fixing a variety of
+   protocols or avoid disclosing a host name at all.  This document
+   studies another possible remedy, which is to replace the static host
+   names by frequently changing randomized values.  This idea obviously
+   needs more work.
 
 Status of This Memo
 
@@ -35,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 6, 2015.
+   This Internet-Draft will expire on September 7, 2015.
 
 Copyright Notice
 
@@ -46,91 +49,82 @@ Copyright Notice
    Provisions Relating to IETF Documents
    (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
-   carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
-   include Simplified BSD License text as described in Section 4.e of
 
 
 
-Huitema                 Expires September 6, 2015               [Page 1]
+Huitema & Thaler        Expires September 7, 2015               [Page 1]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
 
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-     1.1.  Requirements  . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Naming practices  . . . . . . . . . . . . . . . . . . . . . .   3
    3.  Partial identifiers . . . . . . . . . . . . . . . . . . . . .   3
    4.  Protocols that leak host names  . . . . . . . . . . . . . . .   4
      4.1.  DHCP  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
      4.2.  DNS address to name resolution  . . . . . . . . . . . . .   4
      4.3.  Multicast DNS . . . . . . . . . . . . . . . . . . . . . .   5
-     4.4.  DNS service discovery . . . . . . . . . . . . . . . . . .   5
-     4.5.  Link-local Multicast Name Resolution  . . . . . . . . . .   6
-   5.  Randomized Host Names as a remedy . . . . . . . . . . . . . .   6
+     4.4.  Link-local Multicast Name Resolution  . . . . . . . . . .   5
+     4.5.  DNS service discovery . . . . . . . . . . . . . . . . . .   5
+   5.  Randomized Host Names as Remedy . . . . . . . . . . . . . . .   6
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
    8.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
    9.  Informative References  . . . . . . . . . . . . . . . . . . .   7
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
 
    There is a long established practice of giving names to computers.
    In the Internet protocols, these names are referred to as "host
-   names."  Host names are used in a variety of applications from file
-   sharing to network management.  They are typically published as part
-   of domain names, and can be obtained through a variety of name
-   lookups and discovery protocols.
+   names."  Host names are normally used in conjunction with a domain
+   name prefix to build the "Fully Qualified Domain Name" (FQDN) of a
+   host.  However, it is common practice to use the host name without
+   further qualification in a variety of applications from file sharing
+   to network management.  Host names are typically published as part of
+   domain names, and can be obtained through a variety of name lookups
+   and discovery protocols.
 
-   Host names have to unique within the domain in which they are
-   created.  If the domain is large enough, this uniqueness requirement
-   means that the host name provides a lot of information on the device.
-   It is not a worldwide unique identifier, but it can be a very good
-   partial identifier.
+   Host names have to unique within the domain in which they are created
+   and used.  They do not have to be worldwide unique identifiers, but
+   they can always be at least partial identifiers, as discussed in
+   Section 3.
 
    The disclosure of information through host names creates a problem
    for mobile devices.  Adversaries that monitor a remote network such
    as a Wi-Fi hot spot can obtain the host name through passive or
    active monitoring of a variety of Internet protocols, such as for
    example DHCP, or multicast DNS.  They can correlate the host name
-   with various other information extracted form traffic analysis, and
+   with various other information extracted from traffic analysis, and
    identify the device and its user.
 
 
 
-
-
-
-
-Huitema                 Expires September 6, 2015               [Page 2]
+Huitema & Thaler        Expires September 7, 2015               [Page 2]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
-
-1.1.  Requirements
-
-   The keywords MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD,
-   SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL, when they appear in this
-   document, are to be interpreted as described in [RFC2026].
 
 2.  Naming practices
 
    There are many reasons to give names to computers.  This is
    particularly true when computers operate on a network.  Operating
    systems like Microsoft Windows or Unix assume that computers have a
-   "host name."  This enable users and administrators to ping a
-   computer, add its name to an access control list, remotely mount a
-   computer disk, or connect to the computer through tools like telnet
-   or remote desktop.
+   "host name."  This enable users and administrators to do things such
+   as ping a computer, add its name to an access control list, remotely
+   mount a computer disk, or connect to the computer through tools like
+   telnet or remote desktop.
 
-   In small networks, naming is pretty much left to the fancy of the
-   user.  Some will pick names of planets or stars, other names of
+   In most consumer networks, naming is pretty much left to the fancy of
+   the user.  Some will pick names of planets or stars, other names of
    fruits or flowers, and other will pick whatever suits their mood when
    they unwrap the device.  As long as users are careful to not pick a
    name already in use on the same network, anything goes.
@@ -138,13 +132,13 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    In large organizations, collisions are more likely and a more
    structured approach is necessary.  In theory, organizations could use
    multiple DNS subdomains to ease the pressure on uniqueness, but in
-   practice many don't and insist on unique flat names, if only not to
-   advertise an internal structure to the outside world.  To ensure
-   unique names, they will set naming guidelines and enforce some kind
-   of structured naming.  For example, within the Microsoft corporate
-   network, computer names are derived from the login name of the main
-   user, leading to names like "huitema-test2" for a machine that I use
-   to test software.
+   practice many don't and insist on unique flat names, if only to
+   simplify network management.  To ensure unique names, organizations
+   will set naming guidelines and enforce some kind of structured
+   naming.  For example, within the Microsoft corporate network,
+   computer names are derived from the login name of the main user,
+   leading to names like "huitema-test2" for a machine that one of the
+   authors uses to test software.
 
    There is less pressure to assign names to small devices, including
    for example smart phones, as these devices typically do not enable
@@ -155,37 +149,40 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 3.  Partial identifiers
 
-   Suppose an adversary who wants to track the people login on a
+   Suppose an adversary who wants to track the people connecting to a
    specific Wi-Fi hot spot, for example in a railroad station.  Assume
    that the adversary is able to retrieve the host name used by a
    specific laptop.  That, in itself, is not enough to identify the
    laptop's owner.  Suppose however that the adversary observes that the
    laptop name is "huitema-laptop" and that the laptop has established a
+   VPN connection to the Microsoft corporate network.  The two pieces of
+   information, put together, firmly point to Christian Huitema,
+   employed by Microsoft.  The identification is successful.
+
+   In the example, we saw a login name inside the host name, and that
+   certainly helped identification.  But generic names like "jupiter" or
 
 
 
-Huitema                 Expires September 6, 2015               [Page 3]
+Huitema & Thaler        Expires September 7, 2015               [Page 3]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
 
-   VPN connection to the Microsoft corporate network.  The two pieces of
-   information, put together, firmly point to Christian Huitema,
-   employed by Microsoft.  The identification is successfull.
-
-   In the example, we saw a login name inside the host name, and that
-   certainly helped identification.  But generic names like "jupiter" or
    "rosebud" also provide partial identification, especially if the
    adversary is capable of maintaining a database recording among other
-   information the site hostnames of laptops used by specific users.
-   Generic names are picked from vocabularies that include thousands of
+   information the hostnames of laptops used by specific users.  Generic
+   names are picked from vocabularies that include thousands of
    potential choices.  Finding the name reduces the scope of the search
-   by maybe a factor thousand.  Other information like the visited sites
-   will quickly complement that data and lead to user identification.
+   by maybe a factor of a thousand.  Other information like the visited
+   sites will quickly complement that data and lead to user
+   identification.
 
    Of course, unique names assigned by manufacturers are even more
-   interesting for such adversaries.  With a unique name like "BrandX-
-   123456-7890-abcdef," identification can be pretty much immediate.
+   interesting for such adversaries capable of maintaining a database
+   recording the hostnames of devices used by specific user.  With a
+   unique name like "BrandX-123456-7890-abcdef" identification can be
+   pretty much immediate.
 
 4.  Protocols that leak host names
 
@@ -196,9 +193,9 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 4.1.  DHCP
 
-   Shortly after connecting to a new network, a host use DHCP [RFC2131]
-   to acquire an IPv4 address and other parameters [RFC2132].  DHCP
-   query can disclose the "host name."  DHCP traffic is sent to
+   Shortly after connecting to a new network, a host can use DHCP
+   [RFC2131] to acquire an IPv4 address and other parameters [RFC2132].
+   A DHCP query can disclose the "host name."  DHCP traffic is sent to
    multicast addresses and can be easily monitored, enabling adversaries
    to discover the host name associated with a computer visiting a
    particular network.  DHCPv6 [RFC3315] shares similar issues.
@@ -211,23 +208,23 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 4.2.  DNS address to name resolution
 
    The domain name service design [RFC1035] includes the specification
-   of the special domain "in-addr.arpa" for documenting the name of the
+   of the special domain "in-addr.arpa" for resolving the name of the
    computer using a particular IPv4 address, using the PTR format
    defined in [RFC1033].  A similar domain, "ip6.arpa", is defined in
    [RFC3596] for finding the name of a computer using a specific IPv6
    address.
 
+   Adversaries who observe a particular address in use on a specific
+   network can try to retrieve the PTR record associated with that
+   address, and thus the host name of the computer, or even the fully
 
 
 
-Huitema                 Expires September 6, 2015               [Page 4]
+Huitema & Thaler        Expires September 7, 2015               [Page 4]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
 
-   Adversaries who observe a particular address in use on a specific
-   network can try to retrieve the PTR record associated with that
-   address, and thus the host name of the computer, or even the fully
    qualified domain name of that computer.  The retrieval may not be
    useful in many IPv4 networks due to the prevalence of NAT, but it
    could work in IPv6 networks.
@@ -239,31 +236,58 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    hosts participating in the service.
 
    If an adversary suspects that a particular host is present on a
-   network, the adversary can send issue MDNS or LLMNR requests to find,
-   for example, the A or AAAA records associated with the host name in
-   the ".local" domain.  A positive reply will confirm the presence of
-   the host.
+   network, the adversary can send issue MDNS requests to find, for
+   example, the A or AAAA records associated with the host name in the
+   ".local" domain.  A positive reply will confirm the presence of the
+   host.
 
-   According to the MDNS specification, when a responder starts it must
-   send a set of multicast queries to verify that the name that it
-   advertises are unique on the network, and also to populate the caches
-   of other MDNS hosts.  Adversaries can monitor this traffic and
-   discover the host name of computers as they join the monitored
-   network.
+   When a new responder starts, it must send a set of multicast queries
+   to verify that the name that it advertises are unique on the network,
+   and also to populate the caches of other MDNS hosts.  Adversaries can
+   monitor this traffic and discover the host name of computers as they
+   join the monitored network.
 
-4.4.  DNS service discovery
+4.4.  Link-local Multicast Name Resolution
+
+   The Link-local Multicast Name Resolution (LLMNR) is defined in
+   [RFC4795].  The specification did not achieve consensus as an IETF
+   standard, but is widely deployed.  Like MDNS, it enables hosts to
+   send DNS queries over a multicast port, and to elicit responses from
+   computers implementing the LLMNR service.
+
+   Like MDNS, LLMNR can be used by adversaries to confirm the presence
+   on a network of a specific host, by issuing a multicast requests to
+   find the A or AAAA records associated with the host name in the
+   ".local" domain.
+
+   When an LLMNR responder starts it sends a set of multicast queries to
+   verify that the name that it advertises is unique on the network.
+   Adversaries can monitor this traffic and discover the host name of
+   computers as they join the monitored network.
+
+4.5.  DNS service discovery
 
    DNS-Based Service discovery (DNS-SD) is described in [RFC6763].  It
    enables participating host to retrieve the location of services
    proposed by other hosts.  It can be used with DNS servers, or in
-   conjunction with MDNS in a server less environment.
+   conjunction with MDNS in a server-less environment.
+
+
+
+
+
+Huitema & Thaler        Expires September 7, 2015               [Page 5]
+
+Internet-Draft          Harmful Hostname Practice             March 2015
+
 
    Participating hosts publish a service described by an "instance
    name," typically chosen by the user responsible for the publication.
    While this is obviously an active disclosure of information, privacy
-   aspects are mitigated by user control.  Services are only published
-   when deciding to do so, and the information disclosed in the service
-   name is well under the control of the device's owner.
+   aspects can be mitigated by user control.  Services should only be
+   published when deciding to do so, and the information disclosed in
+   the service name should be well under the control of the device's
+   owner.
 
    In theory there should not be any privacy issue, but in practice the
    publication of a service also forces the publication of the host
@@ -272,14 +296,6 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    typically points to the service name in the local domain.  The
    service names, in turn, are used to publish TXT records describing
    service parameters, and SRV records describing the service location.
-
-
-
-
-Huitema                 Expires September 6, 2015               [Page 5]
-
-Internet-Draft          Harmful Hostname Practice             March 2015
-
 
    SRV records are described in [RFC2782].  Each record contains 4
    parameters: priority, weight, port number and host name.  While the
@@ -290,69 +306,53 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    retrieve the host name of computers advertising any service with DNS-
    SD.
 
-4.5.  Link-local Multicast Name Resolution
+5.  Randomized Host Names as Remedy
 
-   The Link-local Multicast Name Resolution (LLMNR) is defined in
-   [RFC4795].  The specification did not achieve consensus as an IETF
-   standard, but is widely implemented.  Like MDNS, it enables hosts to
-   send DNS queries over a multicast port, and to elicit responses from
-   computers implementing the LLMNR service.
-
-   Like MDNS, LLMNR can be used by adversaries to confirm the presence
-   on a network of a specific host, by issuing a multicast requests to
-   find the A or AAAA records associated with the host name in the
-   ".local" domain.
-
-   When an LLMNR responder starts it must send a set of multicast
-   queries to verify that the name that it advertises are unique on the
-   network.  Adversaries can monitor this traffic and discover the host
-   name of computers as they join the monitored network.
-
-5.  Randomized Host Names as a remedy
-
-   There are three ways to remedy the host name practices.  We could
+   There are several ways to remedy the host name practices.  We could
    instruct people to just turn off any protocol that leaks host names,
    at least when they visit some "insecure" place.  We could also
    examine each particular standard that publishes host names, and
    somehow fix the corresponding protocols.  Or, we could attempt to
    revise the way our devices manage the host name parameter.
 
-   There is a lot of merit in "turning off unneeded protocol when
+   There is a lot of merit in "turning off unneeded protocols when
    visiting insecure places."  This amounts to attack surface reduction,
-   and is clearly beneficial.  However, there are two issues with this
+   and is clearly beneficial -- this is an advantage of the stealth mode
+   defined in [RFC7288].  However, there are two issues with this
    advice.  First, it relies on recognizing which network are secure or
    insecure.  This is hard to automate, but relying on the user judgment
-   may not always provide good results.  Second, some protocols like
+   may not always provide good results.  Second, some protocols such as
    DHCP cannot be turned off, which limits the value of this option.
 
    It may be possible in many cases to examine a protocol and prevent it
    from leaking host names.  This is for example what is attempted for
    DHCP in [I-D.huitema-dhc-anonymity-profile].  However, it is unclear
+   that we can identify, revisit an fix all the protocols that publish
+   host names.
 
 
 
-
-Huitema                 Expires September 6, 2015               [Page 6]
+Huitema & Thaler        Expires September 7, 2015               [Page 6]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
 
-   that we can identify, revisit an fix all the protocols that publish
-   host names.
-
    We may be able to mitigate most of the effects of host name leakage
-   by revisiting the way our platforms handle host names.  This is in a
-   way similar to the approach of MAC address randomization described in
+   by revisiting the way platforms handle host names.  This is in a way
+   similar to the approach of MAC address randomization described in
    [I-D.huitema-dhc-anonymity-profile].  Let's assume that the operating
    system, at the time of connecting to a new network, picks a random
-   host name and start publicizing that random name through the internal
-   "get host name" API.  Protocols like DHCP or MDNS will publish that
-   randomized host name instead of the static value.  This will
-   frustrate monitoring by adversaries, without preventing protocols
-   such as DNS SD from operating as expected.
+   host name and start publicizing that random name in protocols like
+   DHCP or MDNS, instead of the static value.  This will frustrate
+   monitoring by adversaries, without preventing protocols such as DNS
+   SD from operating as expected.
 
-   Obviously, further studies are required before the idea of randomized
-   host names can be implemented.
+   Some operating systems, including Windows, support "per network"
+   hostnames, but many operating systems only support "global" host
+   names.  In that case, changing the host name may be difficult if the
+   host is multi-homed, as the same name will be used on several
+   networks.  Obviously, further studies are required before the idea of
+   randomized host names can be implemented.
 
 6.  Security Considerations
 
@@ -365,8 +365,7 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 8.  Acknowledgments
 
-   Dave Thaler pointed to the dependencies between discovery protocols
-   and host names, and made several suggestions for this memo.
+   Contributions will be gladly acknowledged.
 
 9.  Informative References
 
@@ -388,7 +387,8 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
 
 
-Huitema                 Expires September 6, 2015               [Page 7]
+
+Huitema & Thaler        Expires September 7, 2015               [Page 7]
 
 Internet-Draft          Harmful Hostname Practice             March 2015
 
@@ -398,9 +398,6 @@ Internet-Draft          Harmful Hostname Practice             March 2015
 
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, November 1987.
-
-   [RFC2026]  Bradner, S., "The Internet Standards Process -- Revision
-              3", BCP 9, RFC 2026, October 1996.
 
    [RFC2131]  Droms, R., "Dynamic Host Configuration Protocol", RFC
               2131, March 1997.
@@ -430,7 +427,10 @@ Internet-Draft          Harmful Hostname Practice             March 2015
    [RFC6763]  Cheshire, S. and M. Krochmal, "DNS-Based Service
               Discovery", RFC 6763, February 2013.
 
-Author's Address
+   [RFC7288]  Thaler, D., "Reflections on Host Firewalls", RFC 7288,
+              June 2014.
+
+Authors' Addresses
 
    Christian Huitema
    Microsoft
@@ -444,5 +444,61 @@ Author's Address
 
 
 
-Huitema                 Expires September 6, 2015               [Page 8]
+Huitema & Thaler        Expires September 7, 2015               [Page 8]
+
+Internet-Draft          Harmful Hostname Practice             March 2015
+
+
+   DAve Thaler
+   Microsoft
+   Redmond, WA  98052
+   U.S.A.
+
+   Email: dthaler@microsoft.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema & Thaler        Expires September 7, 2015               [Page 9]
 

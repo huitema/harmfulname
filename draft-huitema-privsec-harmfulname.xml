@@ -2,9 +2,6 @@
 
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 
-<!ENTITY rfc2026 PUBLIC ''
-   'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2026.xml'>
-
 <!ENTITY rfc1033 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1033.xml'>
 <!ENTITY rfc1035 PUBLIC ''
@@ -29,6 +26,9 @@
 
 <!ENTITY rfc6763 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.6763.xml'>
+
+<!ENTITY rfc7288 PUBLIC ''
+   'http://xml.resource.org/public/rfc/bibxml/reference.RFC.7288.xml'>
 
 <!ENTITY I-D.ietf-dhc-dhcp-privacy PUBLIC ''  
    "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dhc-dhcp-privacy.xml"> 
@@ -75,6 +75,20 @@
       </address>
     </author>
 
+
+   <author fullname="DAve Thaler" initials="D." surname="Thaler">
+      <organization>Microsoft</organization>
+      <address>
+        <postal>
+          <street> </street>
+          <city>Redmond</city>
+          <code>98052</code>
+          <region>WA</region>
+          <country>U.S.A.</country>
+        </postal>
+        <email>dthaler@microsoft.com</email>
+      </address>
+    </author>
     <date year="2015" month="March"/>
 
     <abstract>
@@ -85,7 +99,9 @@ a name tag affixed to your lapel. The practice can significantly compromise
 your privacy, and should stop.
         </t>
 <t>
-One possible remedy is to replace the static host names by frequently
+There are several possible remedies, such as fixing a variety of
+protocols or avoid disclosing a host name at all. This document studies
+another possible remedy, which is to replace the static host names by frequently
 changing randomized values. This idea obviously needs more work.
 </t>
     </abstract>
@@ -95,16 +111,18 @@ changing randomized values. This idea obviously needs more work.
 <section title="Introduction">
 <t>
 There is a long established practice of giving names to computers. In the Internet
-protocols, these names are referred to as "host names." Host names are used in a variety
-of applications from file sharing to network management. They are typically
+protocols, these names are referred to as "host names." Host names are normally
+used in conjunction with a domain name prefix to build the "Fully Qualified Domain 
+Name" (FQDN) of a host. However, it is common practice to use the host name without
+further qualification in a variety
+of applications from file sharing to network management. Host names are typically
 published as part of domain names, and can be obtained through a variety of
 name lookups and discovery protocols.
 </t>
 <t>
-Host names have to unique within the domain in which they are created. If the
-domain is large enough, this uniqueness requirement means that the host name 
-provides a lot of information on the device. It is not a worldwide unique 
-identifier, but it can be a very good partial identifier.
+Host names have to unique within the domain in which they are created and used. They 
+do not have to be worldwide unique identifiers, but they can always be at 
+least partial identifiers, as discussed in <xref target="PartialID" />.
 </t>
 <t>
 The disclosure of information through host names creates a problem for
@@ -112,27 +130,20 @@ mobile devices. Adversaries that monitor a remote network such as a
 Wi-Fi hot spot can obtain the host name through passive or active monitoring 
 of a variety of Internet protocols, such as for example DHCP, or multicast DNS.
 They can correlate the host name with various other information extracted
-form traffic analysis, and identify the device and its user.
+from traffic analysis, and identify the device and its user.
 </t>
-<section title="Requirements">
-<t>
-The keywords MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD,
-SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL, when they appear in this
-document, are to be interpreted as described in <xref target="RFC2026" />.
-</t>
-</section>
 </section>
 <section title="Naming practices">
 <t>
 There are many reasons to give names to computers. This is particularly true 
 when computers operate on a network. Operating systems like Microsoft Windows or 
 Unix assume that computers have a "host name." This enable users and 
-administrators to ping a computer, add its name to an access control list,
+administrators to do things such as ping a computer, add its name to an access control list,
 remotely mount a computer disk, or connect to the computer through tools like
 telnet or remote desktop.
 </t>
 <t>
-In small networks, naming is pretty much left to the fancy of the user. Some will
+In most consumer networks, naming is pretty much left to the fancy of the user. Some will
 pick names of planets or stars, other names of fruits or flowers, and other 
 will pick whatever suits their mood when they unwrap the device. As long as users
 are careful to not pick a name already in use on the same network, anything goes.
@@ -141,11 +152,11 @@ are careful to not pick a name already in use on the same network, anything goes
 In large organizations, collisions are more likely and a more structured approach 
 is necessary. In theory, organizations could use multiple DNS subdomains to ease
 the pressure on uniqueness, but in practice many don't and insist on unique flat
-names, if only not to advertise an internal structure to the outside world. To ensure
-unique names, they will set naming guidelines and enforce some kind of structured 
+names, if only to simplify network management. To ensure
+unique names, organizations will set naming guidelines and enforce some kind of structured 
 naming. For example, within the Microsoft corporate network, computer names are
 derived from the login name of the main user, leading to names like "huitema-test2"
-for a machine that I use to test software.
+for a machine that one of the authors uses to test software.
 </t>
 <t>
 There is less pressure to assign names to small devices, including for example
@@ -155,30 +166,32 @@ names, which vary from very generic like "Windows Phone" to completely unique
 like "BrandX-123456-7890-abcdef."
 </t>
 </section>
-<section title="Partial identifiers" >
+<section title="Partial identifiers" anchor="PartialID" >
 <t>
-Suppose an adversary who wants to track the people login on a specific Wi-Fi hot spot,
+Suppose an adversary who wants to track the people connecting to a specific Wi-Fi hot spot,
 for example in a railroad station. Assume that the adversary is able to
 retrieve the host name used by a specific laptop. That, in itself, is
 not enough to identify the laptop's owner. Suppose however that the
 adversary observes that the laptop name is "huitema-laptop" and that the
 laptop has established a VPN connection to the Microsoft corporate network. The two
 pieces of information, put together, firmly point to Christian Huitema, employed 
-by Microsoft. The identification is successfull.
+by Microsoft. The identification is successful.
 </t>
 <t>
 In the example, we saw a login name inside the host name, and that certainly helped 
 identification. But generic names like "jupiter" or "rosebud" also provide
 partial identification, especially if the adversary is capable of
-maintaining a database recording among other information the site hostnames 
+maintaining a database recording among other information the hostnames 
 of laptops used by specific users. Generic names are picked from vocabularies that
 include thousands of potential choices. Finding the name reduces the scope
-of the search by maybe a factor thousand. Other information like the visited
+of the search by maybe a factor of a thousand. Other information like the visited
 sites will quickly complement that data and lead to user identification.
 </t>
 <t>
 Of course, unique names assigned by manufacturers are even more interesting for 
-such adversaries. With a unique name like "BrandX-123456-7890-abcdef,"
+such adversaries capable of
+maintaining a database recording the hostnames 
+of devices used by specific user. With a unique name like "BrandX-123456-7890-abcdef" 
 identification can be pretty much immediate.
 </t>
 </section>
@@ -191,8 +204,8 @@ DNS service discovery, and Link-local Multicast Name Resolution.
 
 <section title="DHCP" >
 <t>
-Shortly after connecting to a new network, a host use DHCP <xref target="RFC2131" />
-to acquire an IPv4 address and other parameters <xref target="RFC2132" />. DHCP
+Shortly after connecting to a new network, a host can use DHCP <xref target="RFC2131" />
+to acquire an IPv4 address and other parameters <xref target="RFC2132" />. A DHCP
 query can disclose the "host name." DHCP traffic is sent to multicast addresses
 and can be easily monitored, enabling adversaries to discover the host name 
 associated with a computer visiting a particular network. DHCPv6
@@ -209,7 +222,7 @@ Possible mitigations are described in <xref target="I-D.huitema-dhc-anonymity-pr
 <t>
 The domain name service design 
 <xref target = "RFC1035" /> includes the specification of the special domain
-"in-addr.arpa" for documenting the name of the computer using a particular IPv4 
+"in-addr.arpa" for resolving the name of the computer using a particular IPv4 
 address, using the PTR format defined in  <xref target="RFC1033" />. A similar
 domain, "ip6.arpa", is defined in <xref target="RFC3596" /> for finding the name of a 
 computer using a specific IPv6 address.
@@ -232,14 +245,34 @@ participating in the service.
 <t>
 If an adversary
 suspects that a particular host is present on a network, the adversary can 
-send issue MDNS or LLMNR requests to find, for example, the A or AAAA 
+send issue MDNS requests to find, for example, the A or AAAA 
 records associated with the host name in the ".local" domain. A positive
 reply will confirm the presence of the host.
 </t>
 <t>
-According to the MDNS specification, when a responder starts it must send a set of
+When a new responder starts, it must send a set of
 multicast queries to verify that the name that it advertises are unique on the network,
 and also to populate the caches of other MDNS hosts.
+Adversaries can monitor this traffic and discover the host name of computers
+as they join the monitored network.
+</t>
+</section>
+
+<section title="Link-local Multicast Name Resolution" >
+<t>
+The Link-local Multicast Name Resolution (LLMNR) is defined in <xref target="RFC4795" />. 
+The specification did not achieve consensus as an IETF standard, but is widely 
+deployed. Like MDNS, it enables hosts to send DNS queries over a multicast port,
+and to elicit responses from computers implementing the LLMNR service.
+</t>
+<t>
+Like MDNS, LLMNR can be used by adversaries to confirm the presence on
+a network of a specific host, by issuing a multicast requests to find
+the A or AAAA records associated with the host name in the ".local" domain. 
+</t>
+<t>
+When an LLMNR responder starts it sends a set of
+multicast queries to verify that the name that it advertises is unique on the network.
 Adversaries can monitor this traffic and discover the host name of computers
 as they join the monitored network.
 </t>
@@ -249,14 +282,14 @@ as they join the monitored network.
 <t>
 DNS-Based Service discovery (DNS-SD) is described in <xref target="RFC6763" />. It enables
 participating host to retrieve the location of services proposed by other hosts. It can
-be used with DNS servers, or in conjunction with MDNS in a server less environment.
+be used with DNS servers, or in conjunction with MDNS in a server-less environment.
 </t>
 <t>
 Participating hosts publish a service described by an "instance name," typically 
 chosen by the user responsible for the publication. While this is obviously
-an active disclosure of information, privacy aspects are mitigated by user control. 
-Services are only published when deciding to do so, and the information disclosed in
-the service name is well under the control of the device's owner. 
+an active disclosure of information, privacy aspects can be mitigated by user control. 
+Services should only be published when deciding to do so, and the information disclosed in
+the service name should be well under the control of the device's owner. 
 </t>
 <t>
 In theory there should not be any privacy issue, but in practice the publication of
@@ -278,30 +311,11 @@ name of computers advertising any service with DNS-SD.
 </t>
 </section>
 
-<section title="Link-local Multicast Name Resolution" >
-<t>
-The Link-local Multicast Name Resolution (LLMNR) is defined in <xref target="RFC4795" />. 
-The specification did not achieve consensus as an IETF standard, but is widely 
-implemented. Like MDNS, it enables hosts to send DNS queries over a multicast port,
-and to elicit responses from computers implementing the LLMNR service.
-</t>
-<t>
-Like MDNS, LLMNR can be used by adversaries to confirm the presence on
-a network of a specific host, by issuing a multicast requests to find
-the A or AAAA records associated with the host name in the ".local" domain. 
-</t>
-<t>
-When an LLMNR responder starts it must send a set of
-multicast queries to verify that the name that it advertises are unique on the network.
-Adversaries can monitor this traffic and discover the host name of computers
-as they join the monitored network.
-</t>
-</section>
 </section>
 
-<section title="Randomized Host Names as a remedy" >
+<section title="Randomized Host Names as Remedy" >
 <t>
-There are three ways to remedy the host name practices. We could instruct 
+There are several ways to remedy the host name practices. We could instruct 
 people to just turn off any protocol that leaks host names, at least when
 they visit some "insecure" place. We could also examine each particular
 standard that publishes host names, and somehow fix the corresponding 
@@ -309,12 +323,14 @@ protocols. Or, we could attempt to revise the way our devices manage
 the host name parameter.
 </t>
 <t>
-There is a lot of merit in "turning off unneeded protocol when visiting
+There is a lot of merit in "turning off unneeded protocols when visiting
 insecure places." This amounts to attack surface reduction, and is
-clearly beneficial. However, there are two issues with this advice. First, it
+clearly beneficial -- this is an advantage of
+the stealth mode defined in <xref target="RFC7288" />.
+However, there are two issues with this advice. First, it
 relies on recognizing which network are secure or insecure. This is hard to
 automate, but relying on the user judgment may not always provide good 
-results. Second, some protocols like DHCP cannot be turned off, which
+results. Second, some protocols such as DHCP cannot be turned off, which
 limits the value of this option.
 </t>
 <t>
@@ -326,17 +342,20 @@ that publish host names.
 </t>
 <t>
 We may be able to mitigate most of the effects of host name leakage by
-revisiting the way our platforms handle host names. This is in a way similar to 
+revisiting the way platforms handle host names. This is in a way similar to 
 the approach of MAC address randomization described in 
 <xref target="I-D.huitema-dhc-anonymity-profile" />. Let's assume that the
 operating system, at the time of connecting to a new network, picks
-a random host name and start publicizing that random name through the
-internal "get host name" API. Protocols like DHCP or MDNS will publish
-that randomized host name instead of the static value. This will
+a random host name and start publicizing that random name in protocols like DHCP or MDNS,
+instead of the static value. This will
 frustrate monitoring by adversaries, without preventing protocols
 such as DNS SD from operating as expected.
 </t>
 <t>
+Some operating systems, including Windows, support "per network" hostnames, but many
+operating systems only support "global" host names. In that case, changing the host name
+may be difficult if the host is multi-homed, as the same name will be used
+on several networks. 
 Obviously, further studies are required before the idea of randomized host names
 can be implemented.
 </t>
@@ -356,9 +375,8 @@ This draft does not require any IANA action.
 </section>
 
 <section title="Acknowledgments">
-    <t> 
-Dave Thaler pointed to the dependencies between discovery protocols and host names, 
-and made several suggestions for this memo.
+    <t>
+Contributions will be gladly acknowledged.
     </t>
 </section>
 </middle>
@@ -367,8 +385,6 @@ and made several suggestions for this memo.
 
 <references title="Informative References">
 
-
-       &rfc2026;
        &rfc1033;
        &rfc1035;
        &rfc2131;
@@ -379,6 +395,7 @@ and made several suggestions for this memo.
        &rfc4795;
        &rfc6762;
        &rfc6763;
+       &rfc7288;
        &I-D.ietf-dhc-dhcp-privacy;
        &I-D.ietf-dhc-dhcpv6-privacy;
        &I-D.huitema-dhc-anonymity-profile;
