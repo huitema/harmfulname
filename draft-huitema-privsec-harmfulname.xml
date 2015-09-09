@@ -36,8 +36,8 @@
 <!ENTITY I-D.ietf-dhc-dhcpv6-privacy PUBLIC ''  
    "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dhc-dhcpv6-privacy.xml"> 
 
-<!ENTITY I-D.huitema-dhc-anonymity-profile PUBLIC ''  
-   "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.huitema-dhc-anonymity-profile.xml"> 
+<!ENTITY I-D.ietf-dhc-anonymity-profile PUBLIC ''  
+   "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dhc-anonymity-profile.xml"> 
 
 
 ]>
@@ -53,7 +53,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-huitema-privsec-harmfulname-00.txt" 
+     docName="draft-huitema-privsec-harmfulname-01.txt" 
      ipr="trust200902">
 
 <front>
@@ -89,7 +89,7 @@
         <email>dthaler@microsoft.com</email>
       </address>
     </author>
-    <date year="2015" month="March"/>
+    <date year="2015" />
 
     <abstract>
         <t> 
@@ -215,7 +215,7 @@ associated with a computer visiting a particular network. DHCPv6
 <t>
 The problems with the hostnames and FQDN parameters in DHCP are analyzed  
 in <xref target = "I-D.ietf-dhc-dhcp-privacy" /> and <xref target="I-D.ietf-dhc-dhcpv6-privacy" />.
-Possible mitigations are described in <xref target="I-D.huitema-dhc-anonymity-profile" />.
+Possible mitigations are described in <xref target="I-D.ietf-dhc-anonymity-profile" />.
 </t>
 </section>
 
@@ -338,7 +338,7 @@ limits the value of this option.
 <t>
 It may be possible in many cases to examine a protocol and
 prevent it from leaking hostnames. This is for example what is attempted for
-DHCP in <xref target="I-D.huitema-dhc-anonymity-profile" />. However, 
+DHCP in <xref target="I-D.ietf-dhc-anonymity-profile" />. However, 
 it is unclear that we can identify, revisit an fix all the protocols
 that publish hostnames.
 </t>
@@ -346,7 +346,7 @@ that publish hostnames.
 We may be able to mitigate most of the effects of hostname leakage by
 revisiting the way platforms handle hostnames. This is in a way similar to 
 the approach of MAC address randomization described in 
-<xref target="I-D.huitema-dhc-anonymity-profile" />. Let's assume that the
+<xref target="I-D.ietf-dhc-anonymity-profile" />. Let's assume that the
 operating system, at the time of connecting to a new network, picks
 a random hostname and start publicizing that random name in protocols such as DHCP or MDNS,
 instead of the static value. This will
@@ -400,7 +400,7 @@ Contributions will be gladly acknowledged.
        &rfc7288;
        &I-D.ietf-dhc-dhcp-privacy;
        &I-D.ietf-dhc-dhcpv6-privacy;
-       &I-D.huitema-dhc-anonymity-profile;
+       &I-D.ietf-dhc-anonymity-profile;
 
 
 
