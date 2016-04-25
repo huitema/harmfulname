@@ -56,7 +56,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-intarea-hostname-practice-01.txt" 
+     docName="draft-ietf-intarea-hostname-practice-02.txt" 
      ipr="trust200902">
 
 <front>
@@ -78,7 +78,6 @@
       </address>
     </author>
 
-
    <author fullname="Dave Thaler" initials="D." surname="Thaler">
       <organization>Microsoft</organization>
       <address>
@@ -90,6 +89,18 @@
           <country>U.S.A.</country>
         </postal>
         <email>dthaler@microsoft.com</email>
+      </address>
+    </author>
+
+<author fullname="Rolf Winter" initials="R." surname="Winter">
+      <organization>University of Applied Sciences Augsburg</organization>
+      <address>
+        <postal>
+          <street> </street>
+          <city>Augsburg</city>
+          <country>DE</country>
+        </postal>
+        <email>rolf.winter@hs-augsburg.de</email>
       </address>
     </author>
     <date year="2016" />
@@ -420,6 +431,7 @@ underlying protocols. Also, the generation of new hostnames should be synchroniz
 with the change of other tokens used in network protocols such as the MAC or IP
 address to prevent correlation of this information. 
 <!-- RW: I think the above considerations are important to be mentioned here -->
+<!-- CH: I agree. Reading that, there are two issues, randomizing and timing of randomization. We could develop it. -->
 </t>
 <t>
 Some operating systems, including Windows, support "per network" hostnames, but some other
@@ -449,7 +461,7 @@ This draft does not require any IANA action.
 
 <section title="Acknowledgments">
     <t>
-We would like to thank Rolf Winter for his many contributions to this document.
+Thanks to the members of the INTAREA Working Group for discussions and reviews.
     </t>
 </section>
 </middle>
