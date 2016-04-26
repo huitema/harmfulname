@@ -398,7 +398,7 @@ automate, but relying on end-user judgment may not always provide good
 results. Second, some protocols such as DHCP cannot be turned off 
 without losing connectivity, which limits the value of this option. Also, the
 services that rely on protocols that leak hostnames such as mDNS will not
-be available when switched off. Also, not always are hostname-leaking 
+be available when switched off. In addition, not always are hostname-leaking 
 protocols well-known as they might be proprietary and come with an installed 
 application instead of being provided by the operating system.
 <!-- RW: just to be fair, the above is the case, but has not been mentioned -->
@@ -429,7 +429,9 @@ displayed to users of the application. They will not as easily be able to
 identify e.g. network shares or services based on the hostname carried in the 
 underlying protocols. Also, the generation of new hostnames should be synchronized
 with the change of other tokens used in network protocols such as the MAC or IP
-address to prevent correlation of this information. 
+address to prevent correlation of this information. E.g. if the IP address 
+changes but the hostname stays the same, the new IP address can be correlated
+to belong to the same device based on a leaked hostname. 
 <!-- RW: I think the above considerations are important to be mentioned here -->
 <!-- CH: I agree. Reading that, there are two issues, randomizing and timing of randomization. We could develop it. -->
 </t>
@@ -440,7 +442,7 @@ may be difficult if the host is multi-homed, as the same name will be used
 on several networks. Other operating systems already use potentially different
 hostnames for different purposes, which might be a good model to combine both
 static hostnames and randomized hostnames based on their potential use and thread to 
-a users privacy.
+a user's privacy.
 Obviously, further studies are required before the idea of randomized hostnames
 can be implemented.
 </t>
