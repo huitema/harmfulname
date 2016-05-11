@@ -5,9 +5,9 @@
 Network Working Group                                         C. Huitema
 Internet-Draft                                                 D. Thaler
 Intended status: Informational                                 Microsoft
-Expires: October 28, 2016                                      R. Winter
+Expires: November 12, 2016                                     R. Winter
                                  University of Applied Sciences Augsburg
-                                                          April 26, 2016
+                                                            May 11, 2016
 
 
               Current Hostname Practice Considered Harmful
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 28, 2016.
+   This Internet-Draft will expire on November 12, 2016.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 1]
+Huitema, et al.         Expires November 12, 2016               [Page 1]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 2]
+Huitema, et al.         Expires November 12, 2016               [Page 2]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
    active probing of a variety of Internet protocols, such as for
@@ -165,9 +165,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 3]
+Huitema, et al.         Expires November 12, 2016               [Page 3]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 3.  Partial Identifiers
@@ -221,9 +221,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 4]
+Huitema, et al.         Expires November 12, 2016               [Page 4]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 4.1.  DHCP
@@ -277,9 +277,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 5]
+Huitema, et al.         Expires November 12, 2016               [Page 5]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 4.4.  Link-local Multicast Name Resolution
@@ -333,9 +333,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 6]
+Huitema, et al.         Expires November 12, 2016               [Page 6]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
    Adversaries can monitor the mDNS traffic associated with DNS-SD and
@@ -389,9 +389,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 7]
+Huitema, et al.         Expires November 12, 2016               [Page 7]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
    of new hostnames should be synchronized with the change of other
@@ -445,9 +445,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 8]
+Huitema, et al.         Expires November 12, 2016               [Page 8]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
    [RFC1033]  Lottor, M., "Domain Administrators Operations Guide", RFC
@@ -501,9 +501,9 @@ Internet-Draft          Harmful Hostname Practice             April 2016
 
 
 
-Huitema, et al.         Expires October 28, 2016                [Page 9]
+Huitema, et al.         Expires November 12, 2016               [Page 9]
 
-Internet-Draft          Harmful Hostname Practice             April 2016
+Internet-Draft          Harmful Hostname Practice               May 2016
 
 
    [RFC7719]  Hoffman, P., Sullivan, A., and K. Fujiwara, "DNS
@@ -557,4 +557,4 @@ Authors' Addresses
 
 
 
-Huitema, et al.         Expires October 28, 2016               [Page 10]
+Huitema, et al.         Expires November 12, 2016              [Page 10]
