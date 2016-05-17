@@ -18,6 +18,9 @@
 <!ENTITY rfc3596 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.3596.xml'>
 
+<!ENTITY rfc4620 PUBLIC ''
+   'http://xml.resource.org/public/rfc/bibxml/reference.RFC.4620.xml'>
+
 <!ENTITY rfc4795 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.4795.xml'>
 
@@ -56,7 +59,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-intarea-hostname-practice-02.txt" 
+     docName="draft-ietf-intarea-hostname-practice-03.txt" 
      ipr="trust200902">
 
 <front>
@@ -228,7 +231,7 @@ Also the special circumstances of the network can play a role.
 Experiments on operational networks such as the IETF meeting network
 have shown that with the help of external data such as the publicly available
 IETF attendees list or other data sources such as LDAP servers on the network
-can <xref target="TRAC2016" />, the identification of the device owner
+<xref target="TRAC2016" />, the identification of the device owner
 can become trivial given only partial identifiers in a hostname.
 </t>
 <t>
@@ -297,7 +300,8 @@ Adversaries who observe a particular address in use on a specific network
 can try to retrieve the PTR record associated with that address, and thus
 the hostname of the computer, or even the fully qualified domain name of
 that computer. The retrieval may not be useful in many IPv4 networks due
-to the prevalence of NAT, but it could work in IPv6 networks.
+to the prevalence of NAT, but it could work in IPv6 networks. Other name lookup
+mechanisms, such as <xref target="RFC4620" />, share similar issues.
 </t>
 </section>
 
@@ -321,6 +325,12 @@ and also to populate the caches of other mDNS hosts.
 Adversaries can monitor this traffic and discover the hostname of computers
 as they join the monitored network.
 </t>
+
+<t>
+mDNS further allows to send queries via unicast to port 5353. An adversary might
+decide to use unicast instead of multicast in order to hide from e.g. intrusion
+detection systems.
+</t>
 </section>
 
 <section title="Link-local Multicast Name Resolution" >
@@ -332,7 +342,7 @@ and to elicit responses from computers implementing the LLMNR service.
 </t>
 <t>
 Like mDNS, LLMNR can be used by adversaries to confirm the presence of a specific 
-host on a network, by issuing a multicast requests to find
+host on a network, by issuing a multicast request to find
 the A or AAAA records associated with the hostname in the ".local" domain. 
 </t>
 <t>
@@ -420,7 +430,7 @@ revisiting the way platforms handle hostnames. This is in a way similar to
 the approach of MAC address randomization described in 
 <xref target="I-D.ietf-dhc-anonymity-profile" />. Let's assume that the
 operating system, at the time of connecting to a new network, picks
-a random hostname and start publicizing that random name in protocols such as DHCP or mDNS,
+a random hostname and starts publicizing that random name in protocols such as DHCP or mDNS,
 instead of the static value. This will
 render monitoring and identification of users by adversaries much more difficult, without preventing protocols
 such as DNS-SD from operating as expected. This has of course implications on 
@@ -441,7 +451,7 @@ operating systems only support "global" hostnames. In that case, changing the ho
 may be difficult if the host is multi-homed, as the same name will be used
 on several networks. Other operating systems already use potentially different
 hostnames for different purposes, which might be a good model to combine both
-static hostnames and randomized hostnames based on their potential use and thread to 
+static hostnames and randomized hostnames based on their potential use and threat to 
 a user's privacy.
 Obviously, further studies are required before the idea of randomized hostnames
 can be implemented.
@@ -479,6 +489,7 @@ Thanks to the members of the INTAREA Working Group for discussions and reviews.
        &rfc2782;
        &rfc3315;
        &rfc3596;
+	   &rfc4620; 
        &rfc4795;
        &rfc6762;
        &rfc6763;
