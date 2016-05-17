@@ -79,11 +79,12 @@ Table of Contents
      4.3.  Multicast DNS . . . . . . . . . . . . . . . . . . . . . .   5
      4.4.  Link-local Multicast Name Resolution  . . . . . . . . . .   6
      4.5.  DNS-Based Service Discovery . . . . . . . . . . . . . . .   6
+     4.6.  NetBIOS-over-TCP  . . . . . . . . . . . . . . . . . . . .   7
    5.  Randomized Hostames as Remedy . . . . . . . . . . . . . . . .   7
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
    8.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
-   9.  Informative References  . . . . . . . . . . . . . . . . . . .   8
+   9.  Informative References  . . . . . . . . . . . . . . . . . . .   9
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
@@ -105,7 +106,6 @@ Table of Contents
 
    The disclosure of information through hostnames creates a problem for
    mobile devices.  Adversaries that monitor a remote network such as a
-   Wi-Fi hot spot can obtain the hostname through passive monitoring or
 
 
 
@@ -114,6 +114,7 @@ Huitema, et al.         Expires November 18, 2016               [Page 2]
 Internet-Draft          Harmful Hostname Practice               May 2016
 
 
+   Wi-Fi hot spot can obtain the hostname through passive monitoring or
    active probing of a variety of Internet protocols, such as for
    example DHCP, or multicast DNS (mDNS).  They can correlate the
    hostname with various other information extracted from traffic
@@ -161,7 +162,6 @@ Internet-Draft          Harmful Hostname Practice               May 2016
    123456-7890-abcdef" and often contain the name of the device owner
    the device's brand name and often also a hint as to which language
    the device owner speaks [TRAC2016].
-
 
 
 
@@ -345,6 +345,20 @@ Internet-Draft          Harmful Hostname Practice               May 2016
    retrieve the hostname of computers advertising any service with DNS-
    SD.
 
+4.6.  NetBIOS-over-TCP
+
+   Amongst other things, NetBIOS-over-TCP ([RFC1002]) implements a name
+   registration and resolution mechanism called the NetBIOS Name
+   Service.  In practice, NetBIOS resource names are often based on
+   hostnames.
+
+   NetBIOS allows an application to register resource names and to
+   resolve such names to IP addresses.  In environments without an
+   NetBIOS Name Server, the protocol makes extensive use of broadcasts
+   from which resource names can be easily extracted.  NetBIOS also
+   allows to query for the names registered by a node directly (node
+   status).
+
 5.  Randomized Hostames as Remedy
 
    There are several ways to remedy the hostname practices.  We could
@@ -372,6 +386,14 @@ Internet-Draft          Harmful Hostname Practice               May 2016
    from leaking hostnames.  This is for example what is attempted for
    DHCP in [I-D.ietf-dhc-anonymity-profile].  However, it is unclear
    that we can identify, revisit and fix all the protocols that publish
+
+
+
+Huitema, et al.         Expires November 18, 2016               [Page 7]
+
+Internet-Draft          Harmful Hostname Practice               May 2016
+
+
    hostnames.  In particular, this is impossible for proprietary
    protocols.
 
@@ -386,14 +408,6 @@ Internet-Draft          Harmful Hostname Practice               May 2016
    difficult, without preventing protocols such as DNS-SD from operating
    as expected.  This has of course implications on the applications
    making use of such protocols e.g. when the hostname is being
-
-
-
-Huitema, et al.         Expires November 18, 2016               [Page 7]
-
-Internet-Draft          Harmful Hostname Practice               May 2016
-
-
    displayed to users of the application.  They will not as easily be
    able to identify e.g. network shares or services based on the
    hostname carried in the underlying protocols.  Also, the generation
@@ -428,6 +442,14 @@ Internet-Draft          Harmful Hostname Practice               May 2016
    Thanks to the members of the INTAREA Working Group for discussions
    and reviews.
 
+
+
+
+Huitema, et al.         Expires November 18, 2016               [Page 8]
+
+Internet-Draft          Harmful Hostname Practice               May 2016
+
+
 9.  Informative References
 
    [I-D.ietf-dhc-anonymity-profile]
@@ -440,20 +462,17 @@ Internet-Draft          Harmful Hostname Practice               May 2016
               considerations for DHCP", draft-ietf-dhc-dhcp-privacy-05
               (work in progress), February 2016.
 
-
-
-
-
-
-Huitema, et al.         Expires November 18, 2016               [Page 8]
-
-Internet-Draft          Harmful Hostname Practice               May 2016
-
-
    [I-D.ietf-dhc-dhcpv6-privacy]
               Krishnan, S., Mrugalski, T., and S. Jiang, "Privacy
               considerations for DHCPv6", draft-ietf-dhc-
               dhcpv6-privacy-05 (work in progress), February 2016.
+
+   [RFC1002]  NetBIOS Working Group in the Defense Advanced Research
+              Projects Agency, Internet Activities Board, and End-to-End
+              Services Task Force, "Protocol standard for a NetBIOS
+              service on a TCP/UDP transport: Detailed specifications",
+              STD 19, RFC 1002, DOI 10.17487/RFC1002, March 1987,
+              <http://www.rfc-editor.org/info/rfc1002>.
 
    [RFC1033]  Lottor, M., "Domain Administrators Operations Guide", RFC
               1033, DOI 10.17487/RFC1033, November 1987,
@@ -475,6 +494,17 @@ Internet-Draft          Harmful Hostname Practice               May 2016
               specifying the location of services (DNS SRV)", RFC 2782,
               DOI 10.17487/RFC2782, February 2000,
               <http://www.rfc-editor.org/info/rfc2782>.
+
+
+
+
+
+
+
+Huitema, et al.         Expires November 18, 2016               [Page 9]
+
+Internet-Draft          Harmful Hostname Practice               May 2016
+
 
    [RFC3315]  Droms, R., Ed., Bound, J., Volz, B., Lemon, T., Perkins,
               C., and M. Carney, "Dynamic Host Configuration Protocol
@@ -499,13 +529,6 @@ Internet-Draft          Harmful Hostname Practice               May 2016
               DOI 10.17487/RFC6762, February 2013,
               <http://www.rfc-editor.org/info/rfc6762>.
 
-
-
-Huitema, et al.         Expires November 18, 2016               [Page 9]
-
-Internet-Draft          Harmful Hostname Practice               May 2016
-
-
    [RFC6763]  Cheshire, S. and M. Krochmal, "DNS-Based Service
               Discovery", RFC 6763, DOI 10.17487/RFC6763, February 2013,
               <http://www.rfc-editor.org/info/rfc6763>.
@@ -525,6 +548,19 @@ Internet-Draft          Harmful Hostname Practice               May 2016
               Characterization IEEE TRAC 2016, September 2016.
 
 Authors' Addresses
+
+
+
+
+
+
+
+
+
+Huitema, et al.         Expires November 18, 2016              [Page 10]
+
+Internet-Draft          Harmful Hostname Practice               May 2016
+
 
    Christian Huitema
    Microsoft
@@ -557,4 +593,24 @@ Authors' Addresses
 
 
 
-Huitema, et al.         Expires November 18, 2016              [Page 10]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.         Expires November 18, 2016              [Page 11]

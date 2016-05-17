@@ -2,6 +2,8 @@
 
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 
+<!ENTITY rfc1002 PUBLIC ''
+   'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1002.xml'>
 <!ENTITY rfc1033 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1033.xml'>
 <!ENTITY rfc1035 PUBLIC ''
@@ -386,6 +388,20 @@ of computers advertising any service with DNS-SD.
 </t>
 </section>
 
+<section title="NetBIOS-over-TCP">
+<t>
+Amongst other things, NetBIOS-over-TCP (<xref target="RFC1002" />) implements a 
+name registration and resolution mechanism called the NetBIOS Name Service. 
+In practice, NetBIOS resource names are often based on hostnames.  
+</t>
+<t>NetBIOS allows an application to register resource names and to resolve such
+names to IP addresses. In environments without an NetBIOS Name Server, the 
+protocol makes extensive use of broadcasts from which resource names can 
+be easily extracted. NetBIOS also allows to query for the names registered
+by a node directly (node status).
+</t>
+</section>
+
 </section>
 
 <section title="Randomized Hostames as Remedy" >
@@ -482,6 +498,7 @@ Thanks to the members of the INTAREA Working Group for discussions and reviews.
 
 <references title="Informative References">
 
+       &rfc1002;
        &rfc1033;
        &rfc1035;
        &rfc2131;
