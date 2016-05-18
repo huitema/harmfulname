@@ -397,7 +397,7 @@ In practice, NetBIOS resource names are often based on hostnames.
 <t>NetBIOS allows an application to register resource names and to resolve such
 names to IP addresses. In environments without an NetBIOS Name Server, the 
 protocol makes extensive use of broadcasts from which resource names can 
-be easily extracted. NetBIOS also allows to query for the names registered
+be easily extracted. NetBIOS also allows querying for the names registered
 by a node directly (node status).
 </t>
 </section>

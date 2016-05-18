@@ -5,9 +5,9 @@
 Network Working Group                                         C. Huitema
 Internet-Draft                                                 D. Thaler
 Intended status: Informational                                 Microsoft
-Expires: November 18, 2016                                     R. Winter
+Expires: November 19, 2016                                     R. Winter
                                  University of Applied Sciences Augsburg
-                                                            May 17, 2016
+                                                            May 18, 2016
 
 
               Current Hostname Practice Considered Harmful
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 18, 2016.
+   This Internet-Draft will expire on November 19, 2016.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 1]
+Huitema, et al.         Expires November 19, 2016               [Page 1]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 2]
+Huitema, et al.         Expires November 19, 2016               [Page 2]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -165,7 +165,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 3]
+Huitema, et al.         Expires November 19, 2016               [Page 3]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -221,7 +221,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 4]
+Huitema, et al.         Expires November 19, 2016               [Page 4]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -277,7 +277,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 5]
+Huitema, et al.         Expires November 19, 2016               [Page 5]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -333,7 +333,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 6]
+Huitema, et al.         Expires November 19, 2016               [Page 6]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -356,7 +356,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
    resolve such names to IP addresses.  In environments without an
    NetBIOS Name Server, the protocol makes extensive use of broadcasts
    from which resource names can be easily extracted.  NetBIOS also
-   allows to query for the names registered by a node directly (node
+   allows querying for the names registered by a node directly (node
    status).
 
 5.  Randomized Hostames as Remedy
@@ -389,7 +389,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 7]
+Huitema, et al.         Expires November 19, 2016               [Page 7]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -445,7 +445,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 8]
+Huitema, et al.         Expires November 19, 2016               [Page 8]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -501,7 +501,7 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016               [Page 9]
+Huitema, et al.         Expires November 19, 2016               [Page 9]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -557,7 +557,7 @@ Authors' Addresses
 
 
 
-Huitema, et al.         Expires November 18, 2016              [Page 10]
+Huitema, et al.         Expires November 19, 2016              [Page 10]
 
 Internet-Draft          Harmful Hostname Practice               May 2016
 
@@ -613,4 +613,4 @@ Internet-Draft          Harmful Hostname Practice               May 2016
 
 
 
-Huitema, et al.         Expires November 18, 2016              [Page 11]
+Huitema, et al.         Expires November 19, 2016              [Page 11]
