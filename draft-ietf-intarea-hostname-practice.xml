@@ -404,7 +404,7 @@ by a node directly (node status).
 
 </section>
 
-<section title="Randomized Hostames as Remedy" >
+<section title="Randomized Hostnames as Remedy" >
 <t>
 There are several ways to remedy the hostname practices. We could instruct 
 people to just turn off any protocol that leaks hostnames, at least when
