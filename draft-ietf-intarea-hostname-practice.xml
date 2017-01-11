@@ -38,14 +38,14 @@
 <!ENTITY rfc7719 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.7719.xml'>
 
-<!ENTITY I-D.ietf-dhc-dhcp-privacy PUBLIC ''  
-   "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dhc-dhcp-privacy.xml"> 
+<!ENTITY rfc7819 PUBLIC ''  
+   "http://xml.resource.org/public/rfc/bibxml3/reference.RFC.7819.xml"> 
  
-<!ENTITY I-D.ietf-dhc-dhcpv6-privacy PUBLIC ''  
-   "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dhc-dhcpv6-privacy.xml"> 
+<!ENTITY rfc7824 PUBLIC ''  
+   "http://xml.resource.org/public/rfc/bibxml3/reference.RFC.7824.xml"> 
 
-<!ENTITY I-D.ietf-dhc-anonymity-profile PUBLIC ''  
-   "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dhc-anonymity-profile.xml"> 
+<!ENTITY rfc7844 PUBLIC ''  
+   "http://xml.resource.org/public/rfc/bibxml3/reference.RFC.7844.xml"> 
 
 
 ]>
@@ -61,7 +61,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-intarea-hostname-practice-03.txt" 
+     docName="draft-ietf-intarea-hostname-practice-04.txt" 
      ipr="trust200902">
 
 <front>
@@ -70,16 +70,16 @@
     </title>
 
    <author fullname="Christian Huitema" initials="C." surname="Huitema">
-      <organization>Microsoft</organization>
+      <organization>Private Octopus Inc.</organization>
       <address>
         <postal>
           <street> </street>
-          <city>Redmond</city>
-          <code>98052</code>
+          <city>Friday Harbor</city>
+          <code>98250</code>
           <region>WA</region>
           <country>U.S.A.</country>
         </postal>
-        <email>huitema@microsoft.com</email>
+        <email>huitema@huitema.net</email>
       </address>
     </author>
 
@@ -108,7 +108,7 @@
         <email>rolf.winter@hs-augsburg.de</email>
       </address>
     </author>
-    <date year="2016" />
+    <date year="2017" />
 
     <abstract>
         <t> 
@@ -283,8 +283,8 @@ associated with a computer visiting a particular network. DHCPv6
 </t>
 <t>
 The problems with the hostname and FQDN parameters in DHCP are analyzed  
-in <xref target = "I-D.ietf-dhc-dhcp-privacy" /> and <xref target="I-D.ietf-dhc-dhcpv6-privacy" />.
-Possible mitigations are described in <xref target="I-D.ietf-dhc-anonymity-profile" />.
+in <xref target = "RFC7819" /> and <xref target="RFC7824" />.
+Possible mitigations are described in <xref target="RFC7844" />.
 </t>
 </section>
 
@@ -432,7 +432,7 @@ application instead of being provided by the operating system.
 <t>
 It may be possible in many cases to examine a protocol and
 prevent it from leaking hostnames. This is for example what is attempted for
-DHCP in <xref target="I-D.ietf-dhc-anonymity-profile" />. However, 
+DHCP in <xref target="RFC7844" />. However, 
 it is unclear that we can identify, revisit and fix all the protocols
 that publish hostnames. In particular, this is impossible for proprietary
 protocols.
@@ -444,7 +444,7 @@ will become more over time -->
 We may be able to mitigate most of the effects of hostname leakage by
 revisiting the way platforms handle hostnames. This is in a way similar to 
 the approach of MAC address randomization described in 
-<xref target="I-D.ietf-dhc-anonymity-profile" />. Let's assume that the
+<xref target="RFC7844" />. Let's assume that the
 operating system, at the time of connecting to a new network, picks
 a random hostname and starts publicizing that random name in protocols such as DHCP or mDNS,
 instead of the static value. This will
@@ -506,15 +506,15 @@ Thanks to the members of the INTAREA Working Group for discussions and reviews.
        &rfc2782;
        &rfc3315;
        &rfc3596;
-	   &rfc4620; 
+       &rfc4620; 
        &rfc4795;
        &rfc6762;
        &rfc6763;
        &rfc7288;
-	   &rfc7719;
-       &I-D.ietf-dhc-dhcp-privacy;
-       &I-D.ietf-dhc-dhcpv6-privacy;
-       &I-D.ietf-dhc-anonymity-profile;
+       &rfc7719;
+       &rfc7819;
+       &rfc7824;
+       &rfc7844;
 
        <reference anchor="TRAC2016">
          <front>
