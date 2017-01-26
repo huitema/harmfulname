@@ -8,6 +8,8 @@
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1033.xml'>
 <!ENTITY rfc1035 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml'>
+<!ENTITY rfc1983 PUBLIC ''
+   'http://xml.resource.org/public/rfc/bibxml/reference.RFC.1983.xml'>
 <!ENTITY rfc2131 PUBLIC ''
    'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2131.xml'>
 <!ENTITY rfc2132 PUBLIC ''
@@ -61,7 +63,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-intarea-hostname-practice-04.txt" 
+     docName="draft-ietf-intarea-hostname-practice-05.txt" 
      ipr="trust200902">
 
 <front>
@@ -114,8 +116,6 @@
         <t> 
 Giving a hostname to your computer and publishing it as you roam from
 one network to another is the Internet equivalent of walking around with
-<!-- RW: "network to hot spot" gave the impression that this happens when changing
-to a wireless network, which is not necessary -->
 a name tag affixed to your lapel. This current practice can significantly 
 compromise your privacy, and something should change in order to mitigate
 these privacy threats.
@@ -140,7 +140,7 @@ protocols, these names are referred to as "hostnames" <xref target="RFC7719" /> 
 <!-- RW: RFC 7719 defines host name as a term. It does write it as "host name" and 
 not "hostname" but acknowledges that "hostname" is indeed equivalent -->
 Hostnames are normally used in conjunction with a domain name suffix to build the "Fully Qualified Domain 
-Name" (FQDN) of a host. However, it is common practice to use the hostname without
+Name" (FQDN) of a host <xref target="RFC1983"/>. However, it is common practice to use the hostname without
 further qualification in a variety
 of applications from file sharing to network management. Hostnames are typically
 published as part of domain names, and can be obtained through a variety of
@@ -362,7 +362,7 @@ participating hosts to retrieve the location of services proposed by other hosts
 be used with DNS servers, or in conjunction with mDNS in a server-less environment.
 </t>
 <t>
-Participating hosts publish a service described by an "instance name," typically 
+Participating hosts publish a service described by an "instance name", typically 
 chosen by the user responsible for the publication. While this is obviously
 an active disclosure of information, privacy aspects can be mitigated by user control. 
 Services should only be published when deciding to do so, and the information disclosed in
@@ -469,6 +469,8 @@ on several networks. Other operating systems already use potentially different
 hostnames for different purposes, which might be a good model to combine both
 static hostnames and randomized hostnames based on their potential use and threat to 
 a user's privacy.
+</t>
+<t>
 Obviously, further studies are required before the idea of randomized hostnames
 can be implemented.
 </t>
@@ -501,6 +503,7 @@ Thanks to the members of the INTAREA Working Group for discussions and reviews.
        &rfc1002;
        &rfc1033;
        &rfc1035;
+       &rfc1983;
        &rfc2131;
        &rfc2132;
        &rfc2782;
