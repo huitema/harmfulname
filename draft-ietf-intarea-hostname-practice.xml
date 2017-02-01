@@ -213,9 +213,9 @@ Suppose an adversary wants to track the people connecting to a specific Wi-Fi ho
 for example in a railroad station. Assume that the adversary is able to
 retrieve the hostname used by a specific laptop. That, in itself, might
 not be enough to identify the laptop's owner. Suppose however that the
-adversary observes that the laptop name is "huitema-laptop" and that the
+adversary observes that the laptop name is "dthaler-laptop" and that the
 laptop has established a VPN connection to the Microsoft corporate network. The two
-pieces of information, put together, firmly point to Christian Huitema, employed 
+pieces of information, put together, firmly point to Dave Thaler, employed 
 by Microsoft. The identification is successful.
 </t>
 <t>
