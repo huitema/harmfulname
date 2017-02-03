@@ -481,6 +481,11 @@ can be implemented.
 This draft does not introduce any new protocol. It does point to
 potential privacy issues in a set of existing protocols.
 </t>
+<t>
+In managed environments, the hostname is often used as part of incident response
+or other security related functions. Mitigations for the hostname related privacy
+issues will need to consider the effect on these functions.
+</t>
 </section>
 
 <section title="IANA Considerations" anchor="iana">
