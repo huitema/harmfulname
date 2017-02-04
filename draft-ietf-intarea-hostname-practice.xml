@@ -482,9 +482,11 @@ This draft does not introduce any new protocol. It does point to
 potential privacy issues in a set of existing protocols.
 </t>
 <t>
-In managed environments, the hostname is often used as part of incident response
-or other security related functions. Mitigations for the hostname related privacy
-issues will need to consider the effect on these functions.
+There are obvious privacy gains to changing to randomized hostnames and also to change these
+names frequently. Wide deployment might however affect security functions or current practices.
+For example, incident response using hostnames to track the source of traffic might be affected.
+It is common practice to include hostnames and reverse lookup information at various times during
+an investigation.
 </t>
 </section>
 
